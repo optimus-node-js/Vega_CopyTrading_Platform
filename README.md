@@ -1,12 +1,12 @@
-# 📈 Vega — Copy Trading & Trade Analytics Engine
+# Vega: Copy Trading & Trade Analytics Engine
 
-> A Python trading-journal and copy-trading engine that records every trade, analyses performance in real time, visualises strategy effectiveness, and keeps data in sync across local MongoDB, MongoDB Atlas and JSON — with a remote-triggered self-destruct mode for data security.
+> A Python trading-journal and copy-trading engine that records every trade, analyses performance in real time, visualises strategy effectiveness, and keeps data in sync across local MongoDB, MongoDB Atlas and JSON, with a remote-triggered self-destruct mode for data security.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=flat-square) ![License-Apache 2.0](https://img.shields.io/badge/License--Apache%202.0-D22128?style=flat-square)
 
 ---
 
-## 📖 Overview
+## Overview
 
 Vega started in **2022** as my first serious attempt at building trading tooling. Traders feed it the details of each trade (entry/bid price, exit price, the technical indicators that triggered the trade, and the stock), and Vega:
 
@@ -15,9 +15,9 @@ Vega started in **2022** as my first serious attempt at building trading tooling
 3. renders charts that show which indicators actually make money, and
 4. listens for a server-side flag that can back up and **wipe the local install** (self-destruct) if a machine is compromised.
 
-It later evolved into the [StockAverage](https://github.com/optimus-node-js/StockAverageUpdatedLastBugFixRequired) line of tools and, eventually, my Angel One–based algo-trading work ([algoFinance](https://github.com/optimus-node-js/algoFinance), [Finance-Algo](https://github.com/optimus-node-js/Finance-Algo)).
+It later evolved into the [StockAverage](https://github.com/optimus-node-js/StockAverageUpdatedLastBugFixRequired) line of tools and, eventually, my Angel One-based algo-trading work ([algoFinance](https://github.com/optimus-node-js/algoFinance), [Finance-Algo](https://github.com/optimus-node-js/Finance-Algo)).
 
-## ✨ Features
+## Features
 
 | Area | What it does |
 |---|---|
@@ -30,7 +30,7 @@ It later evolved into the [StockAverage](https://github.com/optimus-node-js/Stoc
 | **Self-destruct mode** | Remote parameter check (`Params.json` / server flag) that backs up and removes local program data |
 | **Colourised CLI** | `colorama`-powered prompts and status output |
 
-## 🏗️ Architecture
+## Architecture
 
 ```
             ┌──────────────────────┐
@@ -45,7 +45,7 @@ It later evolved into the [StockAverage](https://github.com/optimus-node-js/Stoc
               ParamCheck() ──▶ BinaryBackup.py
 ```
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 Vega_CopyTrading_Platform/
@@ -60,7 +60,7 @@ Vega_CopyTrading_Platform/
 └── LICENSE
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 **Prerequisites:** Python 3.10+, MongoDB (local) and/or a MongoDB Atlas cluster.
 
@@ -73,7 +73,7 @@ cd Vega_CopyTrading_Platform
 pip install -r requirements.txt
 ```
 
-Configure your MongoDB connection strings in `Body Code/StockAverage.py` (`LocalMongoFunction` / `ServerMongo`) — credentials in this public repo are redacted as `***REDACTED***`; use your own (ideally through environment variables).
+Configure your MongoDB connection strings in `Body Code/StockAverage.py` (`LocalMongoFunction` / `ServerMongo`), credentials in this public repo are redacted as `***REDACTED***`; use your own (ideally through environment variables).
 
 ```bash
 cd "Body Code"
@@ -92,28 +92,27 @@ Enter the Stock Name >> TATAMOTORS
 Press 'c' to continue else 'e' to Exit :
 ```
 
-## 🗺️ Evolution
+## Evolution
 
 | Year | Milestone |
 |---|---|
 | 2022 | Vega CLI copy-trading journal with MongoDB + JSON storage |
 | 2023 | StockAverage variants with self-destruct mode and binary backups |
-| 2024 | Angel One SmartAPI integrations — portfolio & dividend trackers |
-| 2025–26 | Microservice HFT platform and FastAPI paper-trading engine |
+| 2024 | Angel One SmartAPI integrations, portfolio & dividend trackers |
+| 2025-26 | Microservice HFT platform and FastAPI paper-trading engine |
 
-## 📄 License
+## License
 
 Licensed under the [Apache 2.0 License](LICENSE).
 
 ---
 
-## 👤 Author
+## Author
 
-**Rahul Vishwakarma** — Senior Full Stack Developer · Ahmedabad, India
+**Rahul Vishwakarma**, Senior Full Stack Developer based in Ahmedabad, India
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-rahul--vishwakarma--portfolio.vercel.app-0A66C2?style=flat-square&logo=vercel&logoColor=white)](https://rahul-vishwakarma-portfolio.vercel.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Rahul%20Vishwakarma-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/rahul-vishwakarma-101346192)
 [![Email](https://img.shields.io/badge/Email-karmarahul67%40gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:karmarahul67@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-optimus--node--js-181717?style=flat-square&logo=github)](https://github.com/optimus-node-js)
 
-If you find this project useful, consider giving it a ⭐.
