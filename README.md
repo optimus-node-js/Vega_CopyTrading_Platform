@@ -1,120 +1,119 @@
-# Vega - CopyTrading Program
+# 📈 Vega — Copy Trading & Trade Analytics Engine
 
-## Overview
+> A Python trading-journal and copy-trading engine that records every trade, analyses performance in real time, visualises strategy effectiveness, and keeps data in sync across local MongoDB, MongoDB Atlas and JSON — with a remote-triggered self-destruct mode for data security.
 
-Vega is a sophisticated CopyTrading Program designed to empower users in their stock market endeavors. This program is a valuable tool for both beginners and experienced traders, providing a seamless platform for practicing stock market analysis through copy trading. By offering real-time input of stock prices, technical indicators, and trade details, Vega enables users to evaluate their trading strategies, track performance, and make informed decisions in a dynamic market environment.
-
-### Key Features
-
-- **Copy Trading Functionality**: Users can replicate trades by inputting current stock prices and desired sell prices.
-  
-- **Real-Time Data Analysis**: The program performs detailed analysis of trade data, providing insights into profit margins, win/loss ratios, and overall trading performance.
-  
-- **Graphical Data Visualization**: Visual representations of trading data, including graphs and charts, allow users to easily interpret and analyze their trading patterns.
-
-- **Multi-Format Data Storage**: Vega ensures data accessibility and security through storage in MongoDB (local and cloud) and JSON files.
-
-- **Self-Destruct Mode**: An added security feature, allowing the program to wipe data under specific conditions, such as a command from the server.
-
-## Installation
-
-### Prerequisites
-
-Before installing Vega, ensure you have the following prerequisites:
-
-- Python 3.10 or higher installed on your system.
-- The required Python packages listed in `requirements.txt`.
-
-### Installation Steps
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/yourusername/vega-copytrading.git
-   ```
-   
-2. **Navigate to the Project Directory:**
-   ```bash
-   cd vega-copytrading
-   ```
-
-3. **Install Required Packages:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-### Getting Started
-
-To use Vega and explore its functionalities, follow these steps:
-
-1. **Run the Program:**
-   ```bash
-   python StockAverage.py
-   ```
-   
-2. **Input Trade Details:**
-   - Enter the current bidding price of the stock.
-   - Input the desired closing price for selling the stock.
-   - Specify the number of technical indicators used in the trade.
-   - Provide the names of the indicators utilized (if applicable).
-   - Enter the name of the stock being traded.
-
-3. **Analyze and Interpret Data:**
-   - Review the output data, including total profit/loss, average performance, and win/loss ratios.
-   - Explore the graphical visualizations to gain insights into trading patterns, indicator success rates, and historical performance.
-
-4. **Continue or Exit:**
-   - Input 'c' to continue trading with additional trades.
-   - Input 'e' to exit the program.
-
-### Data Analysis and Visualization
-
-- **Total Profit/Loss Analysis:** Vega calculates the total profit or loss from all trades, providing an overview of the user's financial performance.
-  
-- **Average Profit/Loss Comparison:** Users can compare the average profit or loss per trade to assess the overall success of their trading strategy.
-  
-- **Win/Loss Ratio Evaluation:** The program analyzes the number of winning and losing trades to determine the user's success rate.
-  
-- **Indicator Usage Analysis:** Graphs visualize the success rates of different technical indicators, aiding users in identifying effective trading strategies.
-  
-- **Historical Trade Performance:** A histograph displays the success of specific trades over time, enabling users to refine their strategies based on past performance.
-
-### Data Storage Options
-
-Vega offers multiple data storage options to suit the user's preferences and requirements:
-
-1. **Local MongoDB:** Data stored locally on the user's machine for easy access and retrieval.
-  
-2. **MongoDB Cloud Server:** Data stored on a cloud server, providing remote access and backup capabilities.
-  
-3. **JSON Files:** Data stored in JSON format, ensuring offline access and portability.
-
-### Self-Destruct Mode
-
-As a security measure, Vega includes a self-destruct mode feature. This feature allows the program to wipe its data under specific conditions, such as receiving a command from the server. This ensures that sensitive trading data remains secure and protected.
-
-## License
-
-This project is licensed under the [Apache 2.0 License](LICENSE).
-
-## Contact Information
-
-For questions, suggestions, or feedback regarding Vega - CopyTrading Program, please feel free to reach out:
-
-- **Rahul Vishwakarma**
-- Email: karmarahul67@gmail.com
-
-## Acknowledgements
-
-Vega - CopyTrading Program acknowledges the contributions of various tools and technologies that have made this project possible:
-
-- **Python Community**: For the powerful libraries and frameworks used in development.
-  
-- **MongoDB**: Providing robust data storage solutions for local and cloud-based applications.
-  
-- **GitHub**: Offering version control and hosting services for collaborative development.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=flat-square) ![License-Apache 2.0](https://img.shields.io/badge/License--Apache%202.0-D22128?style=flat-square)
 
 ---
 
-This detailed documentation provides users with comprehensive insights into the features, functionalities, and usage of Vega - CopyTrading Program. It serves as a guide for users to navigate the program effectively and make the most out of their stock market trading experience.
+## 📖 Overview
+
+Vega started in **2022** as my first serious attempt at building trading tooling. Traders feed it the details of each trade (entry/bid price, exit price, the technical indicators that triggered the trade, and the stock), and Vega:
+
+1. computes per-trade and per-day P&L, win/loss ratios and running averages,
+2. persists everything redundantly to **local MongoDB**, **MongoDB Atlas** and **JSON files** (so it still works fully offline),
+3. renders charts that show which indicators actually make money, and
+4. listens for a server-side flag that can back up and **wipe the local install** (self-destruct) if a machine is compromised.
+
+It later evolved into the [StockAverage](https://github.com/optimus-node-js/StockAverageUpdatedLastBugFixRequired) line of tools and, eventually, my Angel One–based algo-trading work ([algoFinance](https://github.com/optimus-node-js/algoFinance), [Finance-Algo](https://github.com/optimus-node-js/Finance-Algo)).
+
+## ✨ Features
+
+| Area | What it does |
+|---|---|
+| **Copy-trade journal** | Interactive CLI to log bid price, closing price, indicators used and stock name for every trade |
+| **Real-time analytics** | Total profit/loss, average profit/loss per trade, win/loss ratio, trades per day |
+| **Indicator analysis** | Tracks which indicators were used on winning vs. losing trades |
+| **Visualisation** | Matplotlib charts for indicator success rate, daily totals and historical trade performance |
+| **Triple storage** | Local MongoDB + MongoDB Atlas + JSON (`eachStockData`, `todaySumData`, `averageData`) |
+| **Binary backup** | `BinaryBackup.py` snapshots data before destructive operations |
+| **Self-destruct mode** | Remote parameter check (`Params.json` / server flag) that backs up and removes local program data |
+| **Colourised CLI** | `colorama`-powered prompts and status output |
+
+## 🏗️ Architecture
+
+```
+            ┌──────────────────────┐
+  trader ──▶│  StockAverage.py CLI │── input validation, P&L engine
+            └─────────┬────────────┘
+                      │ eachStockData / todaySum / averageData
+        ┌─────────────┼──────────────┬───────────────┐
+        ▼             ▼              ▼               ▼
+  Local MongoDB   MongoDB Atlas   JSON files     plotData.py (charts)
+                      ▲
+                      │ remote params (self-destruct / backup flags)
+              ParamCheck() ──▶ BinaryBackup.py
+```
+
+## 📂 Project Structure
+
+```
+Vega_CopyTrading_Platform/
+├── Body Code/
+│   ├── StockAverage.py     # main engine: input loop, analytics, storage
+│   ├── plotData.py         # matplotlib visualisations
+│   ├── BinaryBackup.py     # backup before self-destruct
+│   ├── Params.json         # runtime flags (storage targets, self-destruct)
+│   └── *.json              # local JSON data stores
+├── test/main.py
+├── requirements.txt
+└── LICENSE
+```
+
+## 🚀 Getting Started
+
+**Prerequisites:** Python 3.10+, MongoDB (local) and/or a MongoDB Atlas cluster.
+
+```bash
+git clone https://github.com/optimus-node-js/Vega_CopyTrading_Platform.git
+cd Vega_CopyTrading_Platform
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+Configure your MongoDB connection strings in `Body Code/StockAverage.py` (`LocalMongoFunction` / `ServerMongo`) — credentials in this public repo are redacted as `***REDACTED***`; use your own (ideally through environment variables).
+
+```bash
+cd "Body Code"
+python StockAverage.py
+```
+
+Then follow the prompts:
+
+```
+Bidding Price >> 512.40
+Closing Price >> 530.10
+Number of Indicators Used >> 2
+Enter the Indicator Number 1 >> RSI
+Enter the Indicator Number 2 >> MACD
+Enter the Stock Name >> TATAMOTORS
+Press 'c' to continue else 'e' to Exit :
+```
+
+## 🗺️ Evolution
+
+| Year | Milestone |
+|---|---|
+| 2022 | Vega CLI copy-trading journal with MongoDB + JSON storage |
+| 2023 | StockAverage variants with self-destruct mode and binary backups |
+| 2024 | Angel One SmartAPI integrations — portfolio & dividend trackers |
+| 2025–26 | Microservice HFT platform and FastAPI paper-trading engine |
+
+## 📄 License
+
+Licensed under the [Apache 2.0 License](LICENSE).
+
+---
+
+## 👤 Author
+
+**Rahul Vishwakarma** — Senior Full Stack Developer · Ahmedabad, India
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-rahul--vishwakarma--portfolio.vercel.app-0A66C2?style=flat-square&logo=vercel&logoColor=white)](https://rahul-vishwakarma-portfolio.vercel.app/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rahul%20Vishwakarma-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/rahul-vishwakarma-101346192)
+[![Email](https://img.shields.io/badge/Email-karmarahul67%40gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:karmarahul67@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-optimus--node--js-181717?style=flat-square&logo=github)](https://github.com/optimus-node-js)
+
+If you find this project useful, consider giving it a ⭐.
